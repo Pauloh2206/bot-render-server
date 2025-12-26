@@ -407,7 +407,9 @@ const {
     nomedono,
     numerodono
 } = config;
-const codeMode = process.argv.includes('--code') || process.env.NAZUNA_CODE_MODE === '1';
+// No Render, o modo de pareamento por código pode falhar (Erro 428). 
+// Se NUMERO_BOT estiver definido, tentamos o código. Caso contrário, mostramos o QR Code.
+const codeMode = (process.argv.includes('--code') || process.env.NAZUNA_CODE_MODE === '1' || !!process.env.NUMERO_BOT);
 
 // Cleanup otimizado do cache de mensagens
 let cacheCleanupInterval = null;
@@ -1068,18 +1070,14 @@ async function createBotSocket(authDir) {
             logger
         });
 
-        if (codeMode && !NazunaSock.authState.creds.registered) {
+        if (codeMode && !NazunaSock.authState.creds.registered && process.env.NUMERO_BOT) {
             console.log('⏳ Aguardando 40 segundos para estabilização da rede no Render antes de solicitar o código de pareamento...');
             setTimeout(async () => {
                 try {
                     let phoneNumber = process.env.NUMERO_BOT;
-                    if (!phoneNumber) {
-                        console.error('❌ Erro: A variável de ambiente NUMERO_BOT não foi definida.');
-                        return;
-                    }
                     phoneNumber = phoneNumber.replace(/\D/g, '');
                     if (!/^\d{10,15}$/.test(phoneNumber)) {
-                        console.log('⚠️ Número inválido na variável NUMERO_BOT! Use um número válido com código de país (ex: 5511999999999).');
+                        console.log('⚠️ Número inválido na variável NUMERO_BOT! Fallback para QR Code...');
                         return;
                     }
                     const code = await NazunaSock.requestPairingCode(phoneNumber.replaceAll('+', '').replaceAll(' ', '').replaceAll('-', ''));
@@ -1088,10 +1086,22 @@ async function createBotSocket(authDir) {
                     console.log('📲 Envie este código no WhatsApp para autenticar o bot.');
                     console.log('='.repeat(40) + '\n');
                 } catch (pairingError) {
-                    console.error('❌ Erro ao solicitar código de pareamento (Erro 428 ou Timeout):', pairingError.message);
+                    console.error('❌ Erro ao solicitar código de pareamento (Erro 428 ou Timeout). O QR Code será exibido como alternativa.');
                 }
             }, 40000);
         }
+
+        // Sempre exibe o QR Code se não estiver registrado e não estiver usando código (ou se o código falhar)
+        NazunaSock.ev.on('connection.update', (update) => {
+            const { qr } = update;
+            if (qr) {
+                console.log('\n' + '─'.repeat(30));
+                console.log('✨ [QR CODE] ESCANEIE ABAIXO:');
+                // Usando small: true para caber nos logs do Render
+                qrcode.generate(qr, { small: true });
+                console.log('─'.repeat(30) + '\n');
+            }
+        });
 
         NazunaSock.ev.on('creds.update', saveCreds);
 
