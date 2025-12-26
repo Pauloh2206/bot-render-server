@@ -1,0 +1,126 @@
+{
+  "mark": {},
+  "createdAt": "2025-11-07T00:20:14.078Z",
+  "groupName": "Grupo de Testes Bot",
+  "moderators": [],
+  "allowedModCommands": [],
+  "mutedUsers": {},
+  "levelingEnabled": false,
+  "contador": [
+    {
+      "id": "222823339532469@lid",
+      "msg": 1139,
+      "cmd": 1074,
+      "figu": 38,
+      "pushname": "•Ƥα𝚞ℓo",
+      "firstSeen": "2025-11-07T00:20:27.089Z",
+      "lastActivity": "2025-12-26T15:53:23.627Z"
+    },
+    {
+      "id": "145058410033345@lid",
+      "msg": 323,
+      "cmd": 28,
+      "figu": 9,
+      "pushname": "JV👑",
+      "firstSeen": "2025-11-07T00:20:51.985Z",
+      "lastActivity": "2025-12-22T02:03:15.685Z"
+    },
+    {
+      "id": "224975285968957@lid",
+      "msg": 281,
+      "cmd": 42,
+      "figu": 1,
+      "pushname": "JV",
+      "firstSeen": "2025-11-08T00:37:51.015Z",
+      "lastActivity": "2025-12-21T10:02:42.217Z"
+    },
+    {
+      "id": "250572854820993@lid",
+      "msg": 38,
+      "cmd": 3,
+      "figu": 0,
+      "pushname": "Shania Yan Music",
+      "firstSeen": "2025-11-17T02:19:19.973Z",
+      "lastActivity": "2025-12-20T21:39:18.854Z"
+    },
+    {
+      "id": "268706609418354@lid",
+      "msg": 289,
+      "cmd": 77,
+      "figu": 1,
+      "pushname": "𝑆ℎ𝑎𝑛𝑖𝑎-𝑌𝑎𝑛-𝐵𝑜𝑡",
+      "firstSeen": "2025-12-12T23:14:12.023Z",
+      "lastActivity": "2025-12-23T14:03:06.647Z"
+    }
+  ],
+  "modorpg": true,
+  "minMessage": null,
+  "adminWhitelist": {},
+  "roles": {},
+  "roleMessages": {},
+  "resenha": {
+    "active": false,
+    "createdAt": null,
+    "createdBy": null,
+    "link": "",
+    "items": [],
+    "payments": {},
+    "lastItemId": 0
+  },
+  "antilinkhard": false,
+  "autoResponses": [
+    {
+      "id": "1762628845522",
+      "trigger": "posso mandar link aqui",
+      "response": {
+        "type": "text",
+        "content": "Não, é proibido!"
+      },
+      "createdAt": "2025-11-08T19:07:25.522Z",
+      "isGlobal": false
+    },
+    {
+      "id": "1762629098049",
+      "trigger": "posso mandar link aqui?",
+      "response": {
+        "type": "text",
+        "content": "não,e proibido"
+      },
+      "createdAt": "2025-11-08T19:11:38.049Z",
+      "isGlobal": false
+    },
+    {
+      "id": "1762629147293",
+      "trigger": "posso mandar link aqui?",
+      "response": {
+        "type": "text",
+        "content": "não,e proibido"
+      },
+      "createdAt": "2025-11-08T19:12:27.293Z",
+      "isGlobal": false
+    }
+  ],
+  "soadm": false,
+  "rules": [
+    "*SEJAM BEM VINDOS AO GRUPO DE CONVERSA!*\n🚨NÃO MANDEM LINKS!\n*LINK DO GRUPO*\nhttps://chat.whatsapp.com/ErGpjj6gWo6HGdosEiAouK?mode=ac_t\n\n*HIERARQUIA* \n01 - jhonatan silva (dono)\n02 - ws \n03 - adms\n\nGrupo feito para conversar, então não mande links, e o @ apenas uma vez no dia! \nNão tenha vergonha de se enturmar, queremos todos conversar e resenhar 🤍\n\nAções proibidas e suas punições:\nBan direto;\n- CP\n- GORE (Agressão, tortura, auto-mutilação, e etc)\n- LINKS DE OUTROS GRUPOS\n- Foto/fig/vídeo +18\n- *Links sem permissão*\n- Divulgar sem permissão \nAdv;\n- FLOOD\n- SPAM\n- Desrespeito (racismo, homofobia, e etc)\n- Apologia a facções criminosas, nazismo e etc\n- *Usar comandos no chat*\n- Iniciar ou participar de assuntos +18\n- Incentivar algum membro a fazer alguma ação que causará ban \nMute (10 minutos);\n- Mandar seu @ mais de uma vez no mesmo dia\n\nCom 3 advertências você será banido, se for mutado e mandar alguma mensagem será banido automaticamente!\n\n*Foto é somente de visualização única!*\n\n*(OBRIGATÓRIO SEGUIR ESSE PERFIL NO INSTA)*\n\n1 - https://www.instagram.com/silvawzzx/profilecard/?igsh=ZWttejBtdTZnNmE2"
+  ],
+  "schedule": {
+    "openTime": "07:00",
+    "lastRun": {
+      "open": {
+        "date": "2025-12-16",
+        "time": "07:00"
+      }
+    }
+  },
+  "autoadv_enabled": true,
+  "modobrincadeira": true,
+  "bemvindo": true,
+  "imagemBoasVindasUrl": "https://raw.githubusercontent.com/Pauloh2206/imagem_up/refs/heads/main/4.png",
+  "textbv": "Seja bem-vindo",
+  "antidel": true,
+  "config": {
+    "auto_warn_enabled": true
+  },
+  "warnings": {}
+}
