@@ -1333,19 +1333,22 @@ async function createBotSocket(authDir) {
                     cacheCleanupInterval = null;
                 }
                 
-                if (reason === DisconnectReason.badSession || reason === DisconnectReason.loggedOut) {
+                // No Render, erros 401/503 podem ser temporários. Só limpamos se for explicitamente Logged Out.
+                if (reason === DisconnectReason.loggedOut) {
                     await clearAuthDir();
-                    console.log('🔄 Nova autenticação será necessária na próxima inicialização.');
+                    console.log('🔄 Sessão encerrada pelo usuário. Nova autenticação será necessária.');
+                } else if (reason === DisconnectReason.badSession) {
+                    console.log('⚠️ Sessão inválida detectada, mas mantendo arquivos para tentativa de recuperação no Render...');
                 }
                 
-                // Delay antes de reconectar baseado no motivo
+                // Delay antes de reconectar baseado no motivo (Otimizado para Render)
                 let reconnectDelay = 5000;
-                if (reason === DisconnectReason.timedOut) {
-                    reconnectDelay = 3000; // Reconexão mais rápida para timeout
+                if (reason === DisconnectReason.timedOut || reason === 428 || reason === 503) {
+                    reconnectDelay = 10000; // Delay maior para estabilização de rede
                 } else if (reason === DisconnectReason.connectionLost) {
-                    reconnectDelay = 2000; // Reconexão ainda mais rápida para perda de conexão
+                    reconnectDelay = 5000;
                 } else if (reason === DisconnectReason.loggedOut || reason === DisconnectReason.badSession) {
-                    reconnectDelay = 10000; // Delay maior para problemas de autenticação
+                    reconnectDelay = 15000;
                 }
                 
                 console.log(`🔄 Aguardando ${reconnectDelay / 1000} segundos antes de reconectar...`);

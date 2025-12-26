@@ -1,4 +1,10 @@
 {
-  "commands": {},
+  "commands": {
+    "play": {
+      "level": "owner",
+      "status": "limitado",
+      "definidoEm": "23/12/2025, 23:32:35"
+    }
+  },
   "users": {}
 }

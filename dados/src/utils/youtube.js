@@ -27,7 +27,7 @@ function sanitizeFileName(name) {
  */
 export async function getVideoMetadata(query) {
     // Usando python3 -m yt_dlp para garantir compatibilidade no Render
-    const command = `python3 -m yt_dlp --dump-json "ytsearch1:${query}" --no-playlist --restrict-filenames`;
+    const command = `python3 -m yt_dlp --dump-json "ytsearch1:${query}" --no-playlist --restrict-filenames --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" --no-check-certificate --geo-bypass`;
 
     try {
         const { stdout } = await execPromise(command, { encoding: 'utf8', maxBuffer: 1024 * 10000 });
@@ -58,7 +58,7 @@ export async function downloadYoutubeM4A_Fast(videoUrl) {
         const safeName = `audio_${timestamp}.m4a`;
         const fileName = path.join(TEMP_FOLDER, safeName);
 
-        const command = `python3 -m yt_dlp -f "bestaudio[ext=m4a]" --output "${fileName}" --restrict-filenames "${videoUrl}"`;
+        const command = `python3 -m yt_dlp -f "bestaudio[ext=m4a]" --output "${fileName}" --restrict-filenames "${videoUrl}" --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" --no-check-certificate --geo-bypass`;
 
         await execPromise(command);
 
