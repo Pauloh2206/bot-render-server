@@ -1092,14 +1092,23 @@ async function createBotSocket(authDir) {
         }
 
         // Sempre exibe o QR Code se não estiver registrado e não estiver usando código (ou se o código falhar)
-        NazunaSock.ev.on('connection.update', (update) => {
+        NazunaSock.ev.on('connection.update', async (update) => {
             const { qr } = update;
             if (qr) {
-                console.log('\n' + '─'.repeat(30));
-                console.log('✨ [QR CODE] ESCANEIE ABAIXO:');
-                // Usando small: true para caber nos logs do Render
-                qrcode.generate(qr, { small: true });
-                console.log('─'.repeat(30) + '\n');
+                console.log('\n' + '─'.repeat(40));
+                console.log('✨ [QR CODE DETECTADO]');
+                
+                // Tenta gerar um link para o QR Code (evita quebra nos logs do Render)
+                try {
+                    const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qr)}&size=300x300`;
+                    console.log('🔗 ACESSE O LINK PARA ESCANEAR:');
+                    console.log(qrImageUrl);
+                } catch (e) {
+                    // Fallback para o terminal se a API falhar
+                    qrcode.generate(qr, { small: true });
+                }
+                
+                console.log('─'.repeat(40) + '\n');
             }
         });
 
